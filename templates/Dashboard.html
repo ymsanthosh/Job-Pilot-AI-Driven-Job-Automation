@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPilot - Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="../static/assets/images/favicon_io/android-chrome-512x512.png">
+    <link rel="stylesheet" href="../static/assets/css/Dashboardstyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .upload-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-left: 200px;
+            height: 300px; /* Adjust the height as needed */
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .upload-box:hover {
+            background-color: #e9e9e9;
+        }
+
+        .upload-content {
+            text-align: center;
+        }
+
+        .upload-content svg {
+            width: 50px; /* Adjust the size as needed */
+            height: 50px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .upload-content p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .upload-content .font-semibold {
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #loading-indicator {
+            display: none;
+            text-align: center;
+            color: #555;
+        }
+        #overview-section {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #444;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* List styles */
+#overview-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+#overview-section ul li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#overview-section ul li strong {
+    color: #555;
+}
+#loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Translucent background */
+    z-index: 10; /* High z-index to ensure visibility */
+    display: none; /* Center the content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#loading-indicator img {
+    width: 100px; /* Adjust the size of the loading GIF */
+    height: auto;
+}
+
+/* Link styles */
+#overview-section a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#overview-section a:hover {
+    text-decoration: underline;
+}
+
+/* Button styles */
+#menu-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#menu-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Upload Box Styling */
+.upload-box {
+    background-color: #fff;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.upload-box:hover {
+    background-color: #f0f8ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #overview-section {
+        padding: 10px;
+    }
+
+    #overview-section ul li {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+}
+    </style>
+    <script>
+        let user = {{ user | tojson | safe }};
+        let jobData = {{ job_data | tojson | safe }};
+        let appliedData={{ applied_data | tojson | safe}};
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <aside>
+        <div class="top">
+            <div class="logo">
+                <img src="../static/assets/images/Dashboardimages/loopcv-new-logo-footer.png" alt="logo">
+                <h2 class="text-muted"><span class="danger"></span></h2>
+            </div>
+            <div class="close" id="close-btn">
+                <span class="material-icons">close</span>
+            </div>
+        </div>
+        <div class="sidebar" >
+            <a href="#" class="active" id="overview">
+                <span class="material-icons">grid_view</span>
+                <h3>Overview</h3>
+            </a>
+
+            <a href="#" id="uploads">
+                <span class="material-icons">insights</span>
+                <h3>Uploads</h3>
+            </a>
+            <a href="#" id="openings">
+                <span class="material-icons">mail_outline</span>
+                <h3>Job Openings</h3>
+            </a>
+              <a href="#" id="submissions">
+                <span class="material-icons">person_outline</span>
+                <h3>Auto Apply</h3>
+            </a>
+                 <a href="#" id="applications">
+            <span class="material-icons">inventory</span>
+            <h3>My Applications</h3>
+
+        <a href="{{ url_for('logout_endpoint', _external=True) }}" id="logout">
+            <span class="material-icons">logout</span>
+            <h3>Logout</h3>
+        </a>
+                 </a>
+
+        </div>
+    </aside>
+
+    <main>
+        <div id="overview-section" >
+            <h1 class="text-3xl font-bold">Overview</h1>
+            <br><br><br>
+            <p id="name">Name: {{ user['name'] }}</p>
+            <p id="email">Email: {{ user['email'] }}</p>
+            <p id="github">GitHub: {{ user['github'] }}</p>
+            <p id="linkedin">LinkedIn: {{ user['linkedin'] }}</p>
+            <br>
+            <h2 class="text-2xl font-bold">Projects</h2>
+            <br>
+            <ul id="projects">
+                <!-- Projects will be populated here -->
+            </ul>
+            <br>
+            <h2 class="text-2xl font-bold">Experience</h2>
+            <br>
+            <ul id="experience">
+                <!-- Experience will be populated here -->
+            </ul>
+            <br>
+            <h2 class="text-2xl font-bold">Technical Skills</h2>
+            <br>
+            <ul id="technical-skills">
+                <!-- Technical skills will be populated here -->
+            </ul>
+            <br>
+            <h2 class="text-2xl font-bold">Soft Skills</h2>
+            <br>
+            <ul id="soft-skills">
+                <!-- Soft skills will be populated here -->
+            </ul>
+            <br>
+            <h2 class="text-2xl font-bold">Education</h2>
+            <br>
+            <ul id="education">
+                <!-- Education will be populated here -->
+            </ul>
+            <br>
+    <!-- Clear Button -->
+    <button id="clear-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        Clear
+    </button>
+        </div>
+        <div class="insights"></div>
+        <div id="loading-indicator" class="hidden">
+            <img src="../static/assets/images/Dashboardimages/loading.gif" alt="Loading-indicator">
+        </div>
+        <div id="uploads-section" class="hidden">
+            <h1 class="text-3xl font-bold">Upload your Resume!</h1>
+            <br><br><br>
+            <div style="margin-left:150px">
+            <form id="upload-form" enctype="multipart/form-data">
+                <input type="hidden" name="username" value="Daniel">
+                <div class="upload-box">
+                    <div class="upload-content">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span>
+                            or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">" PDF (A4 size: 210x297mm or Letter size: 8.5x11 inches)"</p>
+                        <input id="dropzone-file" type="file" name="file" class="hidden"/>
+                    </div>
+
+                </div>
+            </form>
+            </div>
+        </div>
+        <div id="openings-section" class="hidden">
+            <h1 class="text-3xl font-bold">Job Openings</h1>
+            <br><br><br>
+            <table id="job-table" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Job Title</th>
+                        <th scope="col" class="px-6 py-3">Company</th>
+                        <th scope="col" class="px-6 py-3">Location</th>
+                        <th scope="col" class="px-6 py-3"> Manual Apply</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <br>
+            <button id="load-more-btn" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style="text-align:center">Load More</button>
+        </div>
+        <div id="autoapply-section" class="hidden">
+            <button class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-bg px-7 py-3.5 text-center me-2 mb-2" style="text-align:center,margin-left:100px,margin-top:150px;">
+                <a href="{{ url_for('autoapply_endpoint', _external=True) }}">Apply !</a>
+            </button>
+            <br><br>
+        </div>
+        <div id="myapplications-section" class="hidden">
+
+            <br><br>
+            <table id="applied-table" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Company</th>
+                        <th scope="col" class="px-6 py-3">Job Title</th>
+                        <th scope="col" class="px-6 py-3"> Applied Date</th>
+                        <th scope="col" class="px-6 py-3"> Link </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Start Right -->
+    <div class="right">
+        <!-- Start Top -->
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-icons">menu</span>
+            </button>
+            <div class="profile">
+                <div class="info">
+                    <p>Hey, <b>{{user['name']}}</b></p>
+                </div>
+                <div class="profile-photo">
+                    <img src="../static/assets/images/Dashboardimages/img.png" alt="Admin">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Right -->
+</div>
+ <footer>
+    <div class="container">
+        <!-- Developer Info and Copyright -->
+        <div>
+
+            <p>&copy; 2024 JobPilot. All rights reserved.</p>
+        </div>
+        <!-- Contact Information -->
+        <div>
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:c19@bmsit.in">support@jobpilot.com</a></p>
+            <p>Phone: <a href="tel:+1234567890">+91 8765908767</a></p>
+        </div>
+        <!-- Follow Us and Other Links -->
+        <div>
+            <h2>Follow Us</h2>
+            <div>
+                <a href="https://twitter.com/intent/tweet?url=www.jobpilot.com/instagram&text=jobpilot">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="w-4 h-4 inline-block"> Twitter
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=www.jobpilot.com/instagram">
+                         <img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn" class="w-4 h-4 inline-block"> LinkedIn
+                </a>
+                <a href="">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="w-4 h-4 inline-block"> Instagram
+                </a>
+                <a href="">
+                     <img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="GitHub" class="w-4 h-4 inline-block"> GitHub
+                </a>
+
+            </div>
+            <p>JobPilot is your go-to platform for finding and applying to jobs effortlessly.</p>
+        </div>
+    </div>
+</footer>
+<script src="../static/assets/js/plugins/Dashboardindex.js"></script>
+<script src="../static/assets/js/dashboard.js"> </script>
+<script>
+    document.getElementById('clear-button').addEventListener('click', function() {
+        if (confirm('Are you sure you want to clear all fields?')) {
+            // Clear the frontend fields
+            document.getElementById('name').innerText = 'Name: ';
+            document.getElementById('email').innerText = 'Email: ';
+            document.getElementById('github').innerText = 'GitHub: ';
+            document.getElementById('linkedin').innerText = 'LinkedIn: ';
+            document.getElementById('projects').innerHTML = '';
+            document.getElementById('experience').innerHTML = '';
+            document.getElementById('technical-skills').innerHTML = '';
+            document.getElementById('soft-skills').innerHTML = '';
+            document.getElementById('education').innerHTML = '';
+
+            // Make a DELETE request to the backend to clear the data in MongoDB
+            fetch('http://127.0.0.1:5000/clearData', {
+                method: 'POST',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || 'Error clearing data'); // Show success or error message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+</script>
+</body>
+</html>
