@@ -4,22 +4,6 @@
 
 https://github.com/user-attachments/assets/cbeb5a5b-dd26-4fc0-ac54-df8bf1fb3a8e
 
-## ScreenShots:
-
-![Pic1 Demo](./static/assets/JobPilot_Images/1.png "Pic 1 Demo")
-![Pic2 Demo](./static/assets/JobPilot_Images/2.png "Pic 2 Demo")
-![Pic3 Demo](./static/assets/JobPilot_Images/3.png "Pic 3 Demo")
-![Pic4 Demo](./static/assets/JobPilot_Images/4.png "Pic 4 Demo")
-![Pic5 Demo](./static/assets/JobPilot_Images/5.png "Pic 5 Demo")
-![Pic6 Demo](./static/assets/JobPilot_Images/6.png "Pic 6 Demo")
-![Pic7 Demo](./static/assets/JobPilot_Images/7.png "Pic 7 Demo")
-![Pic8 Demo](./static/assets/JobPilot_Images/8.png "Pic 8 Demo")
-![Pic9 Demo](./static/assets/JobPilot_Images/9.png "Pic 9 Demo")
-![Pic10 Demo](./static/assets/JobPilot_Images/10.png "Pic 10 Demo")
-![Pic11 Demo](./static/assets/JobPilot_Images/11.png "Pic 11 Demo")
-![Pic12 Demo](./static/assets/JobPilot_Images/12.png "Pic 12 Demo")
-![Pic13 Demo](./static/assets/JobPilot_Images/13.png "Pic 13 Demo")
-
 ## 🔧 Setting up
 
 ### Step 1
@@ -55,6 +39,24 @@ Run the Flask application:
 python app.py
 
 ```
+
+## ScreenShots:
+
+![Pic1 Demo](./static/assets/JobPilot_Images/1.png "Pic 1 Demo")
+![Pic2 Demo](./static/assets/JobPilot_Images/2.png "Pic 2 Demo")
+![Pic3 Demo](./static/assets/JobPilot_Images/3.png "Pic 3 Demo")
+![Pic4 Demo](./static/assets/JobPilot_Images/4.png "Pic 4 Demo")
+![Pic5 Demo](./static/assets/JobPilot_Images/5.png "Pic 5 Demo")
+![Pic6 Demo](./static/assets/JobPilot_Images/6.png "Pic 6 Demo")
+![Pic7 Demo](./static/assets/JobPilot_Images/7.png "Pic 7 Demo")
+![Pic8 Demo](./static/assets/JobPilot_Images/8.png "Pic 8 Demo")
+![Pic9 Demo](./static/assets/JobPilot_Images/9.png "Pic 9 Demo")
+![Pic10 Demo](./static/assets/JobPilot_Images/10.png "Pic 10 Demo")
+![Pic11 Demo](./static/assets/JobPilot_Images/11.png "Pic 11 Demo")
+![Pic12 Demo](./static/assets/JobPilot_Images/12.png "Pic 12 Demo")
+![Pic13 Demo](./static/assets/JobPilot_Images/13.png "Pic 13 Demo")
+
+
 
 > `NOTE: Google Auth API Key: Replace the placeholder in the config.py file with your `Google Auth API key.``
 > `NOTE: Gemini Model API Key: Add your Gemini Model API key in the `config.py` file where indicated.`
