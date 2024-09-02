@@ -6,7 +6,7 @@ import fitz
 
 reader=PdfReader('signed.pdf')
 
-data= ResumeParser("Shreyas_resume.pdf").get_extracted_data()
+data= ResumeParser("test_resume.pdf").get_extracted_data()
 print(data)
 # print(len(reader.pages))
 # print()
