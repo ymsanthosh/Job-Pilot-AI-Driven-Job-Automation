@@ -2,7 +2,7 @@
 
 ## Demo
 
-[![JobPilot Demo Video](./static/assets/JobPilot_Video/JobPilot_Demo_Thumbnail.png "JobPilot Demo Video")](./static/assets/JobPilot_Video/JobPilot_Demo.mp4)
+[![JobPilot Demo Video](./JobPilot_Video/JobPilot_Demo_Thumbnail.png "JobPilot Demo Video")](./JobPilot_Video/JobPilot_Demo.mp4)
 
 
 ## ScreenShots:
