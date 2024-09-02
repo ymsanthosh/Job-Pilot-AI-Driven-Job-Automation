@@ -17,7 +17,7 @@ from bson import ObjectId,json_util
 import datetime
 API_KEY="AIzaSyBLFd5ZNytadTutYj1HsrWoXYwgZvS2BuE"
 genai.configure(api_key=API_KEY)
-client=MongoClient("mongodb+srv://user:"+urllib.parse.quote("fitpulse")+"@cluster0.urlcyfn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client=MongoClient("YOUR_MONGODB_SERVER_LINK")
 db=client['jobpilot']
 collection_resume=db['parsed']
 collection_job=db['job']
