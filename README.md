@@ -1,9 +1,8 @@
 # Job-Pilot: AI Driven Job Automation
 
-## Demo
+## Demo Video of Project
 
-[![JobPilot Demo Video](./JobPilot_Video/JobPilot_Demo_Thumbnail.png "JobPilot Demo Video")](./JobPilot_Video/JobPilot_Demo.mp4)
-
+https://github.com/user-attachments/assets/cbeb5a5b-dd26-4fc0-ac54-df8bf1fb3a8e
 
 ## ScreenShots:
 
