@@ -19,7 +19,7 @@ git clone https://github.com/ymsanthosh/Job-Pilot-AI-Driven-Job-Automation.git
 **Windows:**
 
 ```bash
-git clone hhttps://github.com/ymsanthosh/Job-Pilot-AI-Driven-Job-Automation.git
+git clone https://github.com/ymsanthosh/Job-Pilot-AI-Driven-Job-Automation.git
 
 ```
 
