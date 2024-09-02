@@ -18,15 +18,15 @@ time.sleep(3)
 from pymongo import MongoClient
 from selenium.webdriver.support import expected_conditions as EC
 
-client=MongoClient("mongodb+srv://user:"+urllib.parse.quote("fitpulse")+"@cluster0.urlcyfn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client=MongoClient("YOUR_MONOGDB_ATLAS_LINK")
 db=client['jobpilot']
 collection_resume=db['parsed']
 collection_job=db['job']
 collection_applied=db['applied']
 
 
-username = "santhoshymgbd@gmail.com"
-password = "Santu@2003"
+username = "LINKEDIN_USERNAME"
+password = "LINKEDIN_PASSWORD"
 
 signinbutton = driver.find_element(By.CLASS_NAME,value="nav__button-secondary")
 signinbutton.click()
