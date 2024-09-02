@@ -1,8 +1,8 @@
 
 browser = ["Chrome"]
 
-email = "santhosh2003apple@gmail.com"
-password = "Santu@2003"
+email = "YOUR_LINKEDIN_EMAIL"
+password = "LINKEDIN_PASSWORD"
 
 #run browser in headless mode, no browser screen will be shown it will work in background.
 headless = False
