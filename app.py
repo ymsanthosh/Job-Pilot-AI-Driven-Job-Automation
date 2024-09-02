@@ -21,9 +21,9 @@ from SeleniumAutomator.linkedin_bot import Linkedin
 import time
 
 
-API_KEY="AIzaSyBLFd5ZNytadTutYj1HsrWoXYwgZvS2BuE"
+API_KEY="YOUR_API_KEY"
 genai.configure(api_key=API_KEY)
-client=MongoClient("mongodb+srv://user:"+urllib.parse.quote("fitpulse")+"@cluster0.urlcyfn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client=MongoClient("YOR_MONGODB_ATLAS_ADDRESS")
 db=client['jobpilot']
 collection_resume=db['parsed']
 collection_job=db['job']
@@ -40,8 +40,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-app.secret_key = "gymx.ai"
-GOOGLE_CLIENT_ID = "779029076357-ptsdvsj2nj777lkl1ne1eq1dg8esmfkg.apps.googleusercontent.com"
+app.secret_key = "YOUR_SECRET_KEY"
+GOOGLE_CLIENT_ID = "YOUR_API_KEY"
 client_secret_file = os.path.join(pathlib.Path(__file__).parent,"client_secret.json")
 client = ""
 
